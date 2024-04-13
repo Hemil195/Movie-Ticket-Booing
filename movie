@@ -1,0 +1,11 @@
+#include<iostream>
+
+using namespace std;
+const int Row=5;
+const int Col=10;
+
+int main()
+{
+    bool seat[Row][Col]={false};
+    
+}
