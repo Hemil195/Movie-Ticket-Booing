@@ -78,4 +78,99 @@ public:
             y++;
         }
     }
-}
+ void reservation()
+    {
+        if (seats[row[x - 1] - 'A'][col[y - 1] - 1])
+        {
+            cout << "Seat is already reserved" << endl;
+        }
+        else
+        {
+            seats[row[x - 1] - 'A'][col[y - 1] - 1] = true;
+            // cout << "You have reserved seat successfuly" << endl;
+        }
+    }
+    void ticket_display(int m_choice, int book, char reply)
+    {
+        system("cls");
+        cout << "############################################" << endl;
+        cout << "|\t\tCharusat Cinema\t\t   " << endl;
+        cout << "| Movie name:";
+        switch (m_choice)
+        {
+        case 1:
+            cout << "Bhahubali";
+            break;
+        case 2:
+            cout << "Pushpa";
+            break;
+        case 3:
+            cout << "KGF 3";
+            break;
+        case 4:
+            cout << "Avenger";
+            break;
+        case 5:
+            cout << "Chaal jeevi laiye";
+            break;
+        }
+        cout << endl
+             << "| Screen :" << m_choice << "\t\t\t\t   " << endl;
+
+        cout << "| Seats No.:\t\t\t\t   " << endl;
+        if (reply == 'n' || reply == 'N')
+        {
+            for (int i = 0; i < book; i++)
+            {
+
+                if (i % 10 == 0 && i != 0)
+                {
+                    cout << "|";
+                    cout << endl;
+                    cout << "|";
+                }
+                if (i < 1)
+                {
+                    cout << "|";
+                }
+                cout << " " <<temp_char[book - x + i] << temp_num[book - x + i] << " ";
+                
+            }
+        }
+        else
+        {
+            for (int i = 0; i < book; i++)
+            {
+
+                if (i % 10 == 0 && i != 0)
+                {
+                    cout << "|";
+                    cout << endl;
+                    cout << "|";
+                }
+                if ((temp_num[0] + i - 1) % 10 == 0 && i != 0)
+                {
+                    temp_char[x - 1]++;
+                    temp_num[0] = -i + 1;
+                }
+                if (i < 1)
+                {
+                    cout << "|";
+                }
+                cout << " ";
+                cout << temp_char[x - 1];
+                cout << temp_num[0] + i << " ";
+            }
+        }
+        cout << "\t\t\t\t\t   "<< endl;
+        cout << "| Price:" << (200 * book) <<"\t\t\t\t   "<< endl;
+        time_t givemetime = time(NULL);
+        cout << "| Booked At : " << ctime(&givemetime) ;
+        cout << "############################################" << endl;
+        x = 0;
+        y = 0;
+    }
+};
+int Movie ::x;
+int Movie ::y;
+
