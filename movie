@@ -6,6 +6,6 @@ const int Col=10;
 
 int main()
 {
-    bool seat[Row][Col]={false};
+    bool seat[Row][Col]={false};6526
     
 }
