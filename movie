@@ -173,4 +173,71 @@ public:
 };
 int Movie ::x;
 int Movie ::y;
-
+int main()
+{
+    int total_seats[5] = {50, 50, 50, 50, 50};
+    Movie m[5];
+again:
+system("cls");
+    int m_choice;
+    int book;
+    cout << "*********************************" << endl;
+    cout << "| Charusat Cinema\t\t|" << endl;
+    cout << "| Available Movies\t\t|" << endl;
+    cout << "| (1)Bahubali \t\t\t|" << endl;
+    cout << "| (2)Pushpa 2 \t\t\t|" << endl;
+    cout << "| (3)KGF 3 \t\t\t|" << endl;
+    cout << "| (4)Avenger \t\t\t|" << endl;
+    cout << "| (5)Chaal jeevi laiye\t\t|" << endl;
+    cout << "*********************************" << endl;
+    cout << "Enter your choice:";
+    cin >> m_choice;
+    if (m_choice > 5 || m_choice <= 0)
+    {
+        cout << "Enter Coreect Choice : " << endl;
+        goto again;
+    }
+    m[m_choice - 1].display();
+wrong_book:
+    cout << "Enter number of seat you want to book:";
+    cin >> book;
+    if (book > 50 || total_seats[m_choice - 1] < book)
+    {
+        cout << "avaialble seats are " << total_seats[m_choice - 1] << endl;
+        goto wrong_book;
+    }
+    else if (book < 0)
+    {
+        cout << "number of seats are invalid.Please enter the correct number of seats" << endl;
+        goto wrong_book;
+    }
+    total_seats[m_choice - 1] = total_seats[m_choice - 1] - book;
+    cout << "Do you want to book seat in one row(Y/N):";
+    char reply;
+    cin >> reply;
+    if (reply == 'y' || reply == 'Y')
+    {
+        m[m_choice - 1].get_data();
+        m[m_choice - 1].increment_of_col(book);
+    }
+    else
+    {
+        for (int i = 0; i < book; i++)
+        {
+            m[m_choice - 1].get_data();
+            m[m_choice - 1].reservation();
+        }
+    }
+    m[m_choice - 1].ticket_display(m_choice, book, reply);
+    char choice;
+    cout << "Do you want to book more seats (Y/N):";
+    cin >> choice;
+    if (choice == 'y' || choice == 'Y')
+    {
+        goto again;
+    }
+    else
+    {
+        cout << "Thank you for Ticket Booking";
+    }
+}
