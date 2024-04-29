@@ -1,9 +1,81 @@
-#include<iostream>
-
+#include <iostream>
+#include <iomanip>
+#include <ctime>
 using namespace std;
-
-
-int main()
+const int Row = 5;
+const int Col = 10;
+class Movie
 {
-  
+    char row[51];
+    int col[51];
+    bool seats[Row][Col] = {false};
+    static int x;
+    static int y;
+    char temp_char[Row];
+    int temp_num[Col];
+
+public:
+    void get_data()
+    {
+    wrong_row:
+        cout << "Enter Row (A to E):";
+        cin >> row[x];
+        row[x] = toupper(row[x]);
+        if (row[x] < 'A' || row[x] > 'E')
+        {
+            cout << "Enter Coreect Row : " << endl;
+            goto wrong_row;
+        }
+        temp_char[x] = row[x];
+    wrong_col:
+        cout << "Enter Column:";
+        cin >> col[y];
+        if (col[y] < 1 || col[y] > 10)
+        {
+            cout << "Enter Coreect Col : " << endl;
+            goto wrong_col;
+        }
+        temp_num[y] = col[y];
+        x++;
+        y++;
+    }
+    void display()
+    {
+        system("cls");
+        cout << "************************************" << endl;
+        cout << "|   ";
+        for (int i = 1; i <= Col; i++)
+        {
+            cout << setw(3) << i;
+        }
+        cout << " |" << endl;
+        for (int i = 0; i < Row; i++)
+        {
+            cout << "| ";
+            cout << static_cast<char>('A' + i) << " ";
+            for (int j = 0; j < Col; j++)
+            {
+                if (seats[i][j])
+                {
+                    cout << setw(3) << "X";
+                }
+                else
+                {
+                    cout << setw(3) << "-";
+                }
+            }
+            cout << " |" << endl;
+        }
+        cout << "************************************" << endl;
+    }
+    void increment_of_col(int book)
+    {
+        int temp = book;
+        for (int i = 0; i < book; i++)
+        {
+            reservation();
+            col[y] = col[y - 1] + 1;
+            y++;
+        }
+    }
 }
